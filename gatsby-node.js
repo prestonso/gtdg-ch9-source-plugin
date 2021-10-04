@@ -113,3 +113,25 @@ exports.sourceNodes = async ({
 
   return
 }
+
+exports.onCreateNode = async ({
+  node, // i.e. the just-created node
+  actions: { createNode },
+  createNodeId,
+  getCache,
+}) => {
+  if (node.internal.type === POST_NODE_TYPE) {
+    const fileNode = await createRemoteFileNode({
+      // The remote image URL for which to generate a node.
+      url: node.imgUrl,
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      getCache,
+    })
+
+    if (fileNode) {
+      node.remoteImage___NODE = fileNode.id
+    }
+  }
+}
