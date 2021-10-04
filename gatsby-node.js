@@ -20,6 +20,7 @@ const { getMainDefinition } = require("apollo-utilities")
 const fetch = require("node-fetch")
 const gql = require("graphql-tag")
 const WebSocket = require("ws")
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 
 const POST_NODE_TYPE = `Post`
 const AUTHOR_NODE_TYPE = `Author`
