@@ -135,3 +135,25 @@ exports.onCreateNode = async ({
     }
   }
 }
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  createTypes(`
+    type Post implements Node {
+      id: ID!
+      slug: String!
+      description: String!
+      imgUrl: String!
+      imgAlt: String!
+      # Create relationships between Post and File nodes
+      # for optimized images.
+      remoteImage: File @link
+      # Create relationships between Post and Author nodes.
+      author: Author @link(from: "author.name" by: "name")
+    }
+    type Author implements Node {
+      id: ID!
+      name: String!
+    }`
+  )
+}
