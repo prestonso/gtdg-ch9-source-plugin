@@ -34,16 +34,16 @@ const client = new ApolloClient({
       )
     },
     new WebSocketLink({
-      uri: `ws://localhost:4000`,
-      // or `ws://gatsby-source-plugin-api.glitch.me/`
+      uri: `ws://gatsby-source-plugin-api.glitch.me/`,
+      // or `ws://localhost:4000`
       options: {
         reconnect: true,
       },
       webSocketImpl: WebSocket,
     }),
     new HttpLink({
-      uri: "http://localhost:4000",
-      // or `https://gatsby-source-plugin-api.glitch.me/`
+      uri: "https://gatsby-source-plugin-api.glitch.me/",
+      // or `http://localhost:4000`
       fetch,
     })
   ),
